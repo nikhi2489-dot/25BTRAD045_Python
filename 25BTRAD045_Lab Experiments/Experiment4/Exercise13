@@ -1,0 +1,36 @@
+import csv
+# Create a sample CSV file
+with open("employees.csv", "w", newline="") as file:
+writer = csv.writer(file)
+writer.writerow(["ID", "Name", "Basic Salary", "Allowance", "Deduction"])
+writer.writerow([101, "Rahul", 20000, 5000, 2000])
+writer.writerow([102, "Priya", 25000, 6000, 3000])
+writer.writerow([103, "Arun", 30000, 7000, 4000])
+# Read employee records and calculate salary
+try:
+with open("employees.csv", "r") as file:
+reader = csv.DictReader(file)
+print("PAYROLL MANAGEMENT SYSTEM")
+print("-------------------------")
+total_salary = 0
+for emp in reader:
+basic = float(emp["Basic Salary"])
+allowance = float(emp["Allowance"])
+deduction = float(emp["Deduction"])
+gross = basic + allowance
+net = gross - deduction
+total_salary += net
+print("\nEmployee ID:", emp["ID"])
+print("Employee Name:", emp["Name"])
+print("Basic Salary:", basic)
+
+print("Allowance:", allowance)
+print("Gross Salary:", gross)
+print("Deduction:", deduction)
+print("Net Salary:", net)
+print("\n-------------------------")
+print("Total Net Salary:", total_salary)
+except FileNotFoundError:
+print("Employee file not found!")
+except ValueError:
+print("Invalid salary data!")
