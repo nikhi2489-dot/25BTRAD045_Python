@@ -1,0 +1,34 @@
+# Dice Simulator Using Random Module
+
+import random
+
+# Initialize frequency counters
+frequency = [0, 0, 0, 0, 0, 0]
+
+# Get number of dice and rolls
+dice = int(input("Enter number of dice: "))
+rolls = int(input("Enter number of rolls: "))
+
+print("\nDICE ROLLING SIMULATOR")
+print("----------------------")
+
+# Perform dice rolls
+for i in range(rolls):
+total = 0
+
+for j in range(dice):
+result = random.randint(1, 6)
+total += result
+
+print("Roll", i + 1, ":", total)
+
+if dice == 1:
+frequency[total - 1] += 1
+
+# Display frequency for one die
+if dice == 1:
+print("\nFREQUENCY OF EACH NUMBER")
+for i in range(6):
+print(i + 1, "appeared", frequency[i], "times")
+
+print("\nSimulation completed!")
